@@ -24,7 +24,7 @@ class App extends Component {
             Edit <code>src/App.js</code> and save to reload.
           </p>
 
-          <HolaMundo nombre="Yojhan"/>
+          <HolaMundo nombre="Yojhan Rodriguez"/>
           <Chao />
           <a
             className="App-link"

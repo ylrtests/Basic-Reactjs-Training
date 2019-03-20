@@ -13,25 +13,25 @@
     <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
-    <title>Getting Started with React</title>
+		<title>Getting Started with React</title>
+		
 </head>
 <body>
 	<div id="react-container"></div>
 
 	<script type="text/babel">
 
-		class Hello extends React.Component {
-			render() {
-				return (
-					<div id="fancy">
-						<h1 className="heading">Hello World</h1>
-					</div>
-				)
-			}
+		const Banner = () => {
+			return(
+				<div id="fancy">
+					<h1 className="heading">Welcome to React</h1>
+					<p>Have fun!</p>
+				</div>
+			)
 		}
 	
 		ReactDOM.render(
-			<Hello/>,
+			<Banner/>,
 			document.getElementById('react-container')
 		)
 

@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 
 class HolaMundo extends Component {
 
-    constructor(props){
-        super();
-    }
+ /*No es necesario llamar el constructor para usar "props"*/
 
     render(){
         return(
             <div>
+                 
                 <h1>Hola Mundo- {this.props.nombre}</h1>
             </div>
         );

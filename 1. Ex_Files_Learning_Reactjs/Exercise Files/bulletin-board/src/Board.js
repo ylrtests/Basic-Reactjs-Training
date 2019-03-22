@@ -18,6 +18,23 @@ class Board extends Component{
         this.nextId = this.nextId.bind(this);
     }
 
+    componentWillMount(){
+        var self = this;
+        if(this.props.count){
+            //Template string usando las tildes al revés
+            fetch(`https://baconipsum.com/api/?type=all-meat&sentences=${this.props.count}`)
+                 .then((response) => response.json())
+                 .then(function(myJson){
+
+                    console.log(myJson[0].split('. '));
+
+                    myJson[0].split('. ').forEach(
+                        //(sentence) => console.log(sentence.substring(0,15))); 
+                        (sentence) => self.add(sentence.substring(0,15)));
+                 })
+        }
+    }
+
     update(newText, id){
         console.log('updating item with id: '+id+'\n'+newText);
         this.setState( (prevState) => ({

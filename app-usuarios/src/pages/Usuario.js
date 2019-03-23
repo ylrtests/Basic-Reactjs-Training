@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
-import Card from './../components/Card/Card'
+import Card from './../components/Card/Card';
+import ModalAlbum from './../components/ModalAlbum/ModalAlbum';
 import axios from 'axios';
 
 
@@ -12,12 +13,17 @@ class Usuario extends Component{
         super(props);
 
         this.state = {
-            usuarios: []
+            usuarios: [],
+            albumes: [],
+            modalAlbum: false,
+            userId: null
+
         }; 
 
         this.consultarUsuarios = this.consultarUsuarios.bind(this);
         this.mostrarUsuarios = this.mostrarUsuarios.bind(this);
-        this.mostrarAlbum = this.mostrarAlbum.bind(this);
+        this.mostrarModalAlbum = this.mostrarModalAlbum.bind(this);
+        this.getUsuarioById = this.getUsuarioById.bind(this);
     }
 
     componentWillMount(){
@@ -30,7 +36,6 @@ class Usuario extends Component{
                  this.setState({
                      usuarios: response.data
                  });
-                 console.log(this.state.usuarios);
               })
              .catch(error => {
                 console.log("Error => "+error);
@@ -42,30 +47,52 @@ class Usuario extends Component{
         return(
             // <Card key = {usuario.id} name = {usuario.name}>
             <Card key = {usuario.id} 
-                 mostrarAlbum = {this.mostrarAlbum}
+                  mostrarModalAlbum = {this.mostrarModalAlbum}
                 {...usuario} />               
         );
     }
 
-    mostrarAlbum(id){
+    mostrarModalAlbum(id){
             
-            console.log("userId => "+id);
+            console.log("Albumes del usuario con id: => "+id);
             axios.get(this.url+'/albums?userId='+id)
              .then(response => {
                  console.log(response.data);
+                 this.setState({
+                     modalAlbum: true,
+                     albumes: response.data,
+                     userId: response.data[0].userId
+                 });
+                 
               })
              .catch(error => {
-                console.log("Error => "+error);
+                console.log("Error Usuario@mostrarModalAlbum=> "+error);
              });
+    }
+
+    getUsuarioById(idUser){
+        var usuario = this.state.usuarios.find(item => item.id === idUser);
+        return(usuario);
     }
 
     render(){
         return(
             <div>
                 <h1 className="text-center">Usuario</h1>
-                <div className="row">
+                <p>Versión de React: {React.version}</p>
+                    <div className="row">
+                                    
+                    <ModalAlbum modal={this.state.modalAlbum}
+                                albumes={this.state.albumes}
+                                userId ={this.state.userId}
+                                getUsuarioById={this.getUsuarioById}>
+                    > 
+                    </ModalAlbum>
+                   
+
                     {this.state.usuarios.map(this.mostrarUsuarios)}
-                </div>
+                        
+                    </div>
             </div>
         );
     }

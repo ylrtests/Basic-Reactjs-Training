@@ -11,8 +11,8 @@ class Card extends Component {
                     <div className="top">
                         <div className="wrapper">
                             <div className="mynav">
-                                <a href="#"><span className="lnr lnr-chevron-left"></span></a>
-                                <a href="#"><span className="lnr lnr-cog"></span></a>
+                                {/* <a href="#"><span className="lnr lnr-chevron-left"></span></a>
+                                <a href="#"><span className="lnr lnr-cog"></span></a> */}
                             </div>
                             <h1 className="heading">{this.props.name}</h1>
                             <h3 className="location">{this.props.username}</h3>
@@ -24,7 +24,7 @@ class Card extends Component {
                     <div className="bottom">
                         <div className="wrapper">
                             <ul className="forecast">
-                                <a href="#"><span className="lnr lnr-chevron-up go-up"></span></a>
+                                {/* <a href="#"><span className="lnr lnr-chevron-up go-up"></span></a> */}
                                 <li className="active">
                                     <span className="date">{this.props.address.street} - </span>
                                     <span className="temp">{this.props.address.city}</span>
@@ -35,7 +35,7 @@ class Card extends Component {
                                     
                                 </li>
                                 <li className="active">
-                                <button onClick={()=>{this.props.mostrarAlbum(this.props.id)}} type="button" className="btn btn-primary btn-block">Ver Álbum</button>
+                                <button onClick={()=>{this.props.mostrarModalAlbum(this.props.id)}} type="button" className="btn btn-primary btn-block">Ver Álbum</button>
                                 </li>
                             </ul>
                         </div>

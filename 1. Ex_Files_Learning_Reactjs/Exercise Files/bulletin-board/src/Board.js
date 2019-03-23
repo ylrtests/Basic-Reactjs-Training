@@ -24,7 +24,7 @@ class Board extends Component{
             //Template string usando las tildes al revés
             fetch(`https://baconipsum.com/api/?type=all-meat&sentences=${this.props.count}`)
                  .then((response) => response.json())
-                 .then(function(myJson){
+                 .then((myJson) => {
 
                     console.log(myJson[0].split('. '));
 
